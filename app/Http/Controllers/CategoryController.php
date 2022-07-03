@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 class CategoryController extends Controller
 {
     public function AllCat(){
-        $categories=Categories::all();
+        $categories=Categories::latest()->paginate(5);
         return view('admin.category.index',compact('categories'));
     }
     public function AddCat(Request $request){

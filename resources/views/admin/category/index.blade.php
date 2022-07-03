@@ -34,11 +34,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @php($i=1)
+              
                        @foreach ($categories as $category)
                        <tr>
-                        <td scope="col">{{ $i++}}</td>
-                        <td scope="col">{{ $category->user_id }}</td>
+                        <td scope="col">{{ $categories->firstItem()+$loop->index}}</td>
+                        <td scope="col">{{ $category->users->name }}</td>
                         <td scope="col">{{ $category->category_name }}</td>
                         <td scope="col">
                           @if ($category->created_at== NULL)
@@ -49,9 +49,11 @@
                         </td>
                       </tr>
                        @endforeach
-                      
                     </tbody>
                   </table>
+                <div class="container p-2">
+                  {{ $categories->links() }}
+                </div>
                 </div>
             </div>
             <div class="col-md-4">
