@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,18 @@ Route::get('/', function () {
 // category controller 
 Route::get('/category/all',[CategoryController::class,'AllCat'])->name('all.category');
 Route::post('/category/add',[CategoryController::class,'AddCat'])->name('store.category');
+Route::get('/category/edit/{id}',[CategoryController::class,'editCat']);
+Route::post('/category/update/{id}',[CategoryController::class,'updateCat']);
+Route::get('/category/delete/{id}',[CategoryController::class,'SoftDeleteCat']);
+Route::get('/category/restore/{id}',[CategoryController::class,'restoreCat']);
+Route::get('/category/pDelete/{id}',[CategoryController::class,'permanentDelete']);
+
+
+//product
+Route::get('/product/allProduct',[ProductController::class,'AllPro'])->name('all.product');
+Route::post('/product/addProduct',[ProductController::class,'AddPro'])->name('store.product');
+
+
 
 
 Route::middleware([

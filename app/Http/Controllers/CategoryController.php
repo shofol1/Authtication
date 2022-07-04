@@ -13,7 +13,8 @@ class CategoryController extends Controller
 {
     public function AllCat(){
         $categories=Categories::latest()->paginate(5);
-        return view('admin.category.index',compact('categories'));
+        $trashCat=Categories::onlyTrashed()->latest()->paginate(3);
+        return view('admin.category.index',compact('categories','trashCat'));
     }
     public function AddCat(Request $request){
         $validated = $request->validate([
@@ -40,5 +41,33 @@ class CategoryController extends Controller
     $data['created_at']=Carbon::now();
     DB::table('categories')->insert($data);
     return Redirect()->back()->with('success',"category inserted successfully.");
+    }
+
+    public function editCat($id){
+        $categories=Categories::find($id);
+        return view('admin.category.categoryEdit',compact('categories'));
+    }
+    public function updateCat(Request $request,$id){
+        $updateId=Categories::find($id)->update([
+            'category_name'=>$request->category_name,
+            'user_id'=>Auth::user()->id,
+        ]);
+
+    return Redirect()->route('all.category')->with('success',"category updated successfully.");
+
+    }
+    public function SoftDeleteCat($id){
+        $deleteId=Categories::find($id)->delete();
+        return Redirect()->back()->with('success','Category Soft Delete successfull');
+    }
+    public function restoreCat($id){
+        $restoreId=Categories::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success','Category restore successfull');
+
+    }
+    public function permanentDelete($id){
+        $restoreId=Categories::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success','Category Permanantly delete successfully');
+
     }
 }

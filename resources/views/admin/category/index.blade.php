@@ -7,6 +7,8 @@
     </x-slot>
 
     <div class="py-12">
+        {{-- category  setion start  --}}
+      
        <div class="container">
         <div class="row">
           
@@ -28,9 +30,10 @@
                     <thead>
                       <tr>
                         <th scope="col">SL</th>
-                        <th scope="col">User ID</th>
+                        <th scope="col">User Name</th>
                         <th scope="col">Category Name</th>
                         <th scope="col">Created At</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -46,6 +49,11 @@
                         @else
                           {{ $category->created_at->diffForHumans() }}
                         @endif
+                        </td>
+                        <td>
+                          <a href={{ url('category/edit/'.$category->id) }} class="btn btn-info">Edit</a>
+                          <a href={{ url('category/delete/'.$category->id) }} class="btn btn-danger">Delete</a>
+                          
                         </td>
                       </tr>
                        @endforeach
@@ -75,5 +83,56 @@
             </div>
         </div>
        </div>
+        {{-- category  setion end  --}}
+    </div>
+    <div class="py-12">
+       {{-- trash  setion start  --}}
+       <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+        
+                  <div class="card-header">All Trash</div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">SL</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+              
+                       @foreach ($trashCat as $category)
+                       <tr>
+                        <td scope="col">{{ $categories->firstItem()+$loop->index}}</td>
+                        <td scope="col">{{ $category->users->name }}</td>
+                        <td scope="col">{{ $category->category_name }}</td>
+                        <td scope="col">
+                          @if ($category->created_at== NULL)
+                            <span class="text-danger">No date found</span>
+                        @else
+                          {{ $category->created_at->diffForHumans() }}
+                        @endif
+                        </td>
+                        <td>
+                          <a href={{ url('category/restore/'.$category->id) }} class="btn btn-info">Restore</a>
+                          <a href={{ url('category/pDelete/'.$category->id) }} class="btn btn-info">Permanantly Delete</a>
+                          
+                        </td>
+                      </tr>
+                       @endforeach
+                    </tbody>
+                  </table>
+                <div class="container p-2">
+                  {{ $trashCat->links() }}
+                </div>
+                </div>
+            </div>
+        </div>
+       </div>
+      {{-- trash  setion end  --}}
     </div>
 </x-app-layout>
