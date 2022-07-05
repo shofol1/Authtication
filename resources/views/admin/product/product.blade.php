@@ -4,7 +4,7 @@
            <b>All Product</b>
         </h2>
     </x-slot>
-
+{{-- product section start  --}}
     <div class="py-12">
        <div class="container">
         <div class="row">
@@ -26,6 +26,7 @@
                             <th scope="col">Product Name</th>
                             <th scope="col">User Name</th>
                             <th scope="col">Created_at</th>
+                            <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,10 @@
                             <td>{{ $product->product_name }}</td>
                             <td>{{ $product->users->name }}</td>
                             <td>{{ $product->created_at->diffForHumans() }}</td>
+                            <td>
+                              <a href={{ url('product/edit/'.$product->id) }} class="btn btn-info">Edit</a>
+                              <a href={{ url('product/softdelete/'.$product->id) }} class="btn btn-danger">Delete</a>
+                            </td>
                           </tr>
                          @endforeach
                         </tbody>
@@ -72,4 +77,50 @@
 
        </div>
     </div>
+
+    {{-- product section end  --}}
+    {{-- Trash  section start  --}}
+    <div class="py-12">
+      <div class="container">
+       <div class="row">
+       <div class="col-md-8">
+           <div class="card">
+               <div class="card-header"> <h4><Strong>All Product</Strong></h4></div>
+               <div class="card-body">
+                   <table class="table">
+                       <thead>
+                         <tr>
+                           <th scope="col">SL</th>
+                           <th scope="col">Product Name</th>
+                           <th scope="col">User Name</th>
+                           <th scope="col">Created_at</th>
+                           <th scope="col">Action</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                        @foreach ($trashPro as $product)
+                        <tr>
+                           <th scope="row">{{$products->firstItem()+$loop->index }}</th>
+                           <td>{{ $product->product_name }}</td>
+                           <td>{{ $product->users->name }}</td>
+                           <td>{{ $product->created_at->diffForHumans() }}</td>
+                           <td>
+                             <a href={{ url('product/restore/'.$product->id) }} class="btn btn-info">Restore</a>
+                             <a href={{ url('product/pDelete/'.$product->id) }} class="btn btn-danger">Permanently Delete</a>
+                           </td>
+                         </tr>
+                        @endforeach
+                       </tbody>
+                     </table>
+
+                     <div class="container">
+                       {{ $trashPro->links() }}
+                     </div>
+               </div>
+           </div>
+       </div>
+
+      </div>
+   </div>
+    {{-- Trash  section end  --}}
 </x-app-layout>

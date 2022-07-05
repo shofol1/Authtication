@@ -32,7 +32,12 @@ Route::get('/category/pDelete/{id}',[CategoryController::class,'permanentDelete'
 
 //product
 Route::get('/product/allProduct',[ProductController::class,'AllPro'])->name('all.product');
+Route::get('/product/edit/{id}',[ProductController::class,'editPro']);
+Route::get('/product/softdelete/{id}',[ProductController::class,'softdeletePro']);
+Route::get('/product/softdelete/{id}',[ProductController::class,'softdeletePro']);
+Route::get('/product/pDelete/{id}',[ProductController::class,'permanentDelete']);
 Route::post('/product/addProduct',[ProductController::class,'AddPro'])->name('store.product');
+Route::post('/product/update/{id}',[ProductController::class,'updatePro']);
 
 
 
