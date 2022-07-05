@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Models\User;
@@ -38,6 +39,14 @@ Route::get('/product/softdelete/{id}',[ProductController::class,'softdeletePro']
 Route::get('/product/pDelete/{id}',[ProductController::class,'permanentDelete']);
 Route::post('/product/addProduct',[ProductController::class,'AddPro'])->name('store.product');
 Route::post('/product/update/{id}',[ProductController::class,'updatePro']);
+
+// Brands 
+Route::get('/brand/allBrand',[BrandController::class,'allBrand'])->name('all.brand');
+Route::post('/brand/addBrand',[BrandController::class,'AddBrand'])->name('store.brand');
+Route::get('/brand/edit/{id}',[BrandController::class,'editBrand']);
+Route::post('/brand/update/{id}',[BrandController::class,'updateBrand']);
+Route::get('/brand/delete/{id}',[BrandController::class,'deleteBrand']);
+
 
 
 
