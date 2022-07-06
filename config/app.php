@@ -214,5 +214,4 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
-
 ];

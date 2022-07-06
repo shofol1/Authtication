@@ -39,7 +39,7 @@
                           <tr>
                             <td scope="col">{{ $brands->firstItem()+$loop->index }}</td>
                             <td scope="col">{{ $brand->brand_name }}</td>
-                            <td scope="col"><img src="{{ asset($brand->brand_image) }}" class="img-thumbnail" style="width:50px;height:50px;object-content:cover" alt=""></td>
+                            <td scope="col"><img src="{{ asset($brand->brand_image) }}" class="img-thumbnail" style="object-content:cover" alt=""></td>
                             <td scope="col">{{ $brand->created_at }}</td>
                             <td scope="col">
                               <a href={{ url('brand/edit/'.$brand->id) }} class="btn btn-info">Edit</a>

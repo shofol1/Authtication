@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\brands;
+use App\Models\multipics;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,8 +37,8 @@ $brand_image=$request->file('brand_image');
 // $brand_image->move($up_location,$img_name);
 $name_gen=hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
 
-Image::make($brand_image)->resize(300, 200)->save('images/brand/'.$name_gen);
-$last_image='imges/brand/'.$name_gen;
+Image::make($brand_image)->resize(50, 50)->save('images/brand/'.$name_gen);
+$last_image='images/brand/'.$name_gen;
 brands::insert([
     'brand_name'=>$request->brand_name,
     'brand_image'=>$last_image,
@@ -92,8 +93,28 @@ public function deleteBrand($id){
     $image=brands::find($id);
     $old_image=$image->brand_image;
     unlink($old_image);
-    brands::find($id)->delete();
+    DB::table('brands')
+    ->where('id', $id)
+    ->delete();
     return Redirect()->route('all.brand')->with('success',"Brands dek successfully.");
 }
+//multi image
+public function multiPic(){
+    // $images=MultiPic::all();
+    return view('admin.multipic.index');
+}
+public function addImage(Request $request){
+    $image=$request->image;
+    foreach($image as $multi_img){
+    $name_gen=hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+    Image::make($multi_img)->resize(50,50)->save('images/multi/'.$name_gen);
+    $last_image='images/multi/'.$name_gen;
+    multipics::insert([
+        'image'=>$last_image,
+        'created_at'=>Carbon::now()
+    ]);
+}
+    return Redirect()->back()->with('success',"Multiple image insert successfully.");
 
+}
 }
