@@ -22,6 +22,13 @@
                     </button>
                   </div>
                    @endif
+                   <div class="card-group">
+                    @foreach ($images as $image)
+                        <div class="col-md-4 mt-5">
+                            <img src="{{ asset($image->image) }}" alt="">
+                        </div>
+                    @endforeach
+                   </div>
             </div>
             <div class="col-md-4">
               <div class="card">

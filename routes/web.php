@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,7 +65,10 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         // $users=User::all();
-        $users = DB::table('users')->get();
-        return view('dashboard',compact('users'));
+        // $users = DB::table('users')->get();
+        return view('admin.index');
     })->name('dashboard');
 });
+
+
+Route::get('/user/logout',[BrandController::class,'logout'])->name('user.logout');

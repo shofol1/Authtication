@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function allPro(){
         $products=products::latest()->paginate(5);
         $trashPro=products::onlyTrashed()->latest()->paginate((3));

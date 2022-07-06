@@ -6,11 +6,16 @@ use App\Models\brands;
 use App\Models\multipics;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
    public function allBrand(){
     $brands=brands::latest()->paginate(5);
 return view('admin.brand.index',compact('brands'));
@@ -100,8 +105,8 @@ public function deleteBrand($id){
 }
 //multi image
 public function multiPic(){
-    // $images=MultiPic::all();
-    return view('admin.multipic.index');
+    $images=multipics::all();
+    return view('admin.multipic.index',compact('images'));
 }
 public function addImage(Request $request){
     $image=$request->image;
@@ -116,5 +121,10 @@ public function addImage(Request $request){
 }
     return Redirect()->back()->with('success',"Multiple image insert successfully.");
 
+}
+
+public function logout(){
+    Auth::logout();
+    return Redirect()->route('login')->with('success',"User Logout successfully.");
 }
 }
