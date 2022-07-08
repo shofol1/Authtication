@@ -112,7 +112,7 @@ public function addImage(Request $request){
     $image=$request->image;
     foreach($image as $multi_img){
     $name_gen=hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
-    Image::make($multi_img)->resize(50,50)->save('images/multi/'.$name_gen);
+    Image::make($multi_img)->resize(60,36)->save('images/multi/'.$name_gen);
     $last_image='images/multi/'.$name_gen;
     multipics::insert([
         'image'=>$last_image,

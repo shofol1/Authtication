@@ -22,6 +22,7 @@
     
     
     <link href='{{ asset('backend/assets/plugins/toastr/toastr.min.css') }}' rel='stylesheet'>
+    <link href='{{ asset('backend/assets/css/style.css') }}' rel='stylesheet'>
     
     
     

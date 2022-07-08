@@ -34,8 +34,8 @@
             <ul class="collapse show" id="dashboard" data-parent="#sidebar-menu">
               <div class="sub-menu">
                 <li class="active">
-                  <a class="sidenav-item-link" href="index.html">
-                    <span class="nav-text">Ecommerce</span>
+                  <a class="sidenav-item-link" href={{ route('all.brand') }}>
+                    <span class="nav-text">Home Brand</span>
                   </a>
                 </li>
 

@@ -1,15 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           <b>All Brands</b>
+@extends('admin.admin_master')
 
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
+@section('admin_content')
+    <div class="p-5">
         {{-- category  setion start  --}}
-      
-       <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
@@ -24,7 +17,7 @@
                   </div>
                    @endif
                   <div class="card-header">All Categories</div>
-                  <table class="table">
+                  <table class="table custom_table_col">
                     <thead>
                       <tr>
                         <th scope="col">SL</th>
@@ -84,4 +77,4 @@
        </div>
         {{-- category  setion end  --}}
     </div>
-</x-app-layout>
+@endsection
