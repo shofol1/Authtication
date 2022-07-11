@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,10 @@ Route::get('/multi/image',[BrandController::class,'multiPic'])->name('multi.imag
 Route::post('/multy/add',[BrandController::class,'addImage'])->name('store.image');
 
 
+// Home slider 
+Route::get('/home/slider',[HomeController::class,'slider'])->name('home.slider');
+Route::get('/slider/edit',[HomeController::class,'editSlider'])->name('edit.slider');
+Route::post('/home/addSlider',[HomeController::class,'AddSlider'])->name('store.slider');
 
 
 Route::middleware([

@@ -40,7 +40,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-@include('layouts.body.header');
+@include('layouts.body.header')
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->

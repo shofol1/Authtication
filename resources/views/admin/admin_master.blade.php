@@ -81,7 +81,7 @@
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
        
-@include('admin.partial.sidebar');
+@include('admin.partial.sidebar')
 
           <!-- ====================================
         ——— PAGE WRAPPER
@@ -600,10 +600,10 @@
     
     
     <!-- Footer -->
-    <footer class="footer mt-auto">
+    <footer class="footer mt-auto text-center">
       <div class="copyright bg-white">
         <p>
-          Copyright &copy; <span id="copy-year"></span> a template by <a class="text-primary" href="https://themefisher.com" target="_blank">Themefisher</a>.
+          Copyright &copy; <span id="copy-year"></span> develop by <a class="text-primary" href="https://themefisher.com" target="_blank">shofol</a>.
         </p>
       </div>
       <script>

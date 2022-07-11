@@ -45,5 +45,5 @@
        </div>
         {{-- category  setion end  --}}
     </div>
-    @endsection
+@endsection
 

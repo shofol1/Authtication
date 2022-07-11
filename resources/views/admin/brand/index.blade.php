@@ -16,7 +16,8 @@
                     </button>
                   </div>
                    @endif
-                  <div class="card-header">All Categories</div>
+                  <div class="card-header">All Brands
+                  </div>
                   <table class="table custom_table_col">
                     <thead>
                       <tr>
