@@ -21,21 +21,21 @@
                   <table class="table custom_table_col">
                     <thead>
                       <tr>
-                        <th scope="col">SL</th>
-                        <th scope="col">Brand Name</th>
-                        <th scope="col">Brand Image</th>
-                        <th scope="col">Created At</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" width="5%">SL</th>
+                        <th scope="col" width="15%">Brand Name</th>
+                        <th scope="col" width="20%">Brand Image</th>
+                        <th scope="col" width="30%">Created At</th>
+                        <th scope="col" width="30%">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($brands as $brand)
                           <tr>
-                            <td scope="col">{{ $brands->firstItem()+$loop->index }}</td>
-                            <td scope="col">{{ $brand->brand_name }}</td>
-                            <td scope="col"><img src="{{ asset($brand->brand_image) }}" class="img-thumbnail" style="object-content:cover" alt=""></td>
-                            <td scope="col">{{ $brand->created_at }}</td>
-                            <td scope="col">
+                            <td scope="row">{{ $brands->firstItem()+$loop->index }}</td>
+                            <td >{{ $brand->brand_name }}</td>
+                            <td ><img src="{{ asset($brand->brand_image) }}" class="img-thumbnail" style="object-content:cover" alt=""></td>
+                            <td >{{ $brand->created_at }}</td>
+                            <td >
                               <a href={{ url('brand/edit/'.$brand->id) }} class="btn btn-info">Edit</a>
                               <a href={{ url('brand/delete/'.$brand->id) }} onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
                             </td>
