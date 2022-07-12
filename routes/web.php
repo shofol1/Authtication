@@ -67,6 +67,10 @@ Route::post('/slider/update/{id}',[HomeController::class,'updateSlider']);
 Route::get('/slider/delete/{id}',[HomeController::class,'deleteSlider']);
 
 
+// portfolio 
+Route::get('/home/portfolio',[HomeController::class,'multipic'])->name('home.portfolio');
+Route::get('/home/portfolio/create',[HomeController::class,'createPortfolio'])->name('create.portfolio');
+Route::post('/home/portfolio/addPortfolio',[HomeController::class,'AddPortfolio'])->name('store.portfolio');
 
 
 
