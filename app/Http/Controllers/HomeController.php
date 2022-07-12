@@ -14,7 +14,7 @@ class HomeController extends Controller
         $sliders=DB::table('sliders')->get();
         return view('admin.home.index',compact('sliders'));
     }
-    public function editslider(){
+    public function createSlider(){
 return view('admin.home.addSlider');
     }
 
@@ -42,5 +42,42 @@ slider::insert(
 return Redirect()->route('home.slider')->with('success','Slider added successfully');
     }
 
-    
+    public function editSlider($id){
+        $sliders=slider::find($id);
+        return view('admin.home.editSlider',compact('sliders'));
+    }
+
+    public function updateSlider(Request $request,$id){
+        $old_image=$request->old_image;
+        $image=$request->file('image');
+   if($image){
+    $name_gen=hexdec(uniqid()).".".$image->getClientOriginalExtension();
+    $image->move('images/sliders/',$name_gen);
+    $last_image='images/sliders/'.$name_gen;
+    unlink($old_image);
+    slider::find($id)->update([
+'title'=>$request->title,
+'description'=>$request->description,
+'image'=>$last_image,
+'created_at'=>Carbon::now()
+    ]);
+    return redirect()->back()->with('success','data updated successfully');
+   }else{
+    slider::find($id)->update([
+        'title'=>$request->title,
+        'description'=>$request->description,
+        'created_at'=>Carbon::now()
+    ]);
+    return redirect()->back()->with('success','data updated successfully');
+
+   }
+   
+    }
+    public function deleteSlider($id){
+        $slider=slider::find($id);
+        $old_image=$slider->image;
+        unlink($old_image);
+        DB::table('sliders')->where('id',$id)->delete();
+        return Redirect()->route('home.slider')->with('success','data deleted succesfully');
+    }
 }

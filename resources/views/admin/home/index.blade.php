@@ -3,7 +3,7 @@
 @section('admin_content')
     <div class="p-5">
         {{-- category  setion start  --}}
-        <a class="btn btn-info my-3" href={{ route('edit.slider') }}>Add slider</a>
+        <a class="btn btn-info my-3" href={{ route('create.slider') }}>Add slider</a>
 
         <div class="row">
             <div class="col-md-12">
@@ -42,8 +42,8 @@
                             <td scope="row"><img src="{{ asset($slider->image) }}" class="img-thumbnail" style="object-content:cover" alt=""></td>
                             <td scope="row">{{ $slider->created_at }}</td>
                             <td scope="row">
-                              <a href={{ url('brand/edit/'.$slider->id) }} class="btn btn-info">Edit</a>
-                              <a href={{ url('brand/delete/'.$slider->id) }} onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                              <a href={{ url('slider/edit/'.$slider->id) }} class="btn btn-info">Edit</a>
+                              <a href={{ url('slider/delete/'.$slider->id) }} onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
                             </td>
                           </tr>
                       @endforeach

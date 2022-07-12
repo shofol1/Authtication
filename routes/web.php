@@ -60,8 +60,14 @@ Route::post('/multy/add',[BrandController::class,'addImage'])->name('store.image
 
 // Home slider 
 Route::get('/home/slider',[HomeController::class,'slider'])->name('home.slider');
-Route::get('/slider/edit',[HomeController::class,'editSlider'])->name('edit.slider');
+Route::get('/slider/create',[HomeController::class,'createSlider'])->name('create.slider');
 Route::post('/home/addSlider',[HomeController::class,'AddSlider'])->name('store.slider');
+Route::get('/slider/edit/{id}',[HomeController::class,'editSlider']);
+Route::post('/slider/update/{id}',[HomeController::class,'updateSlider']);
+Route::get('/slider/delete/{id}',[HomeController::class,'deleteSlider']);
+
+
+
 
 
 Route::middleware([
