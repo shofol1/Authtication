@@ -34,6 +34,16 @@
     <div class="container d-flex align-items-center justify-content-center vh-100">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-10">
+          @if (session('success'))
+                 
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+           <strong>{{ session('success') }}</strong> 
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+
+           </button>
+         </div>
+          @endif
           <div class="card">
             <div class="card-header bg-primary">
               <div class="app-brand">
@@ -45,8 +55,8 @@
                       <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                     </g>
                   </svg>
-
-                  <span class="brand-name">Sleek Dashboard</span>
+                 
+                  <span class="brand-name">Login</span>
                 </a>
               </div>
             </div>

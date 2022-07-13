@@ -35,7 +35,7 @@
   
     <!-- FAVICON -->
     <link href="{{ asset('backend/assets/img/favicon.png') }}" rel="shortcut icon" />
-  
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!--
       HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
     -->
@@ -53,7 +53,7 @@
       NProgress.start();
     </script>
 
-    <div id="toaster"></div>
+    {{-- <div id="toaster"></div> --}}
 
     <!-- ====================================
     ——— WRAPPER
@@ -568,7 +568,7 @@
                       </li>
 
                       <li>
-                        <a href="user-profile.html">
+                        <a href="{{ route('user.profile') }}">
                           <i class="mdi mdi-account"></i> My Profile
                         </a>
                       </li>
@@ -643,6 +643,7 @@
     <script src='{{ asset('backend/assets/plugins/daterangepicker/daterangepicker.js') }}'></script>
     <script src='{{ asset('backend/assets/js/date-range.js') }}'></script>
 
+   
     
 
     
@@ -666,6 +667,26 @@
     <script src="{{ asset('backend/assets/js/sleek.js') }}"></script>
   <link href="{{ asset('backend/assets/options/optionswitch.css') }}" rel="stylesheet">
 <script src="{{ asset('backend/assets/options/optionswitcher.js') }}"></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+<script>
+  @if(Session::has('message'))
+  var type="{{ Session::get('alert-type','info') }}"
+  switch(type){
+    case 'info':
+      toastr.info("{{ Session::get('message') }}");
+      break;
+    case 'success':
+      toastr.success("{{ Session::get('message') }}");
+      break;
+    case 'warning':
+      toastr.warning("{{ Session::get('message') }}");
+      break;
+    case 'error':
+      toastr.error("{{ Session::get('message') }}");
+      break;
+  }
+  @endif
+</script>
 </body>
 </html>
 

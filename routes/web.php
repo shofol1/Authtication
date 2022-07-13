@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChangePass;
+use App\Http\Controllers\ChangeProfile;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -89,6 +90,11 @@ Route::post('/contact/form/store',[ContactController::class,'storeContactForm'])
 //change password and user profile
 Route::get('/user/password',[ChangePass::class,'changePassword'])->name('change.password');
 Route::post('/user/updatePass',[ChangePass::class,'updatePass'])->name('update.password');
+
+// user profile 
+Route::get('/user/profile',[ChangeProfile::class,'changeProfile'])->name('user.profile');
+Route::post('/user/updateProfile',[ChangeProfile::class,'updateProfile'])->name('update.profile');
+
 
 
 

@@ -16,7 +16,8 @@ class ChangePass extends Controller
     public function updatePass(Request $request){
         $validateData=$request->validate([
             'oldPass'=>'required',
-            'password'=>'required|confirmed',
+            'password'=>'required|confirmed|min:6',
+            'password_confirmation' => 'required|min:3'
         ]);
         $hashPassword=Auth::user()->password;
         if(Hash::check($request->oldPass,$hashPassword)){
@@ -28,7 +29,6 @@ class ChangePass extends Controller
 
         }else{
             return Redirect()->back()->with('error',"Current password is invalid.");
-
         }
     }
 }

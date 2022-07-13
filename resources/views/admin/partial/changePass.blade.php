@@ -3,7 +3,16 @@
 <div class="row justify-content-center my-4">
     <div class="col-md-11">
         <div class="card card-default" >
+            @if (session('error'))
+                 
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+             <strong>{{ session('error') }}</strong> 
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
 
+             </button>
+           </div>
+            @endif
             <div class="card-header card-header-border-bottom">
                 <h2>change password</h2>
             </div>
@@ -31,10 +40,10 @@
                   </div>
                     <div class="form-group">
                         <label for="exampleFormControlPassword3">Confirrm Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Confirm Password">
+                        <input type="password" name="password_confirmation" class="form-control" id="password" placeholder="Confirm Password">
                     </div>
                    <div class="my-2">
-                    @error('password')
+                    @error('password_confirmation')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
                    </div>
