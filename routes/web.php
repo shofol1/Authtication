@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChangePass;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Models\User;
@@ -71,6 +73,22 @@ Route::get('/slider/delete/{id}',[HomeController::class,'deleteSlider']);
 Route::get('/home/portfolio',[HomeController::class,'multipic'])->name('home.portfolio');
 Route::get('/home/portfolio/create',[HomeController::class,'createPortfolio'])->name('create.portfolio');
 Route::post('/home/portfolio/addPortfolio',[HomeController::class,'AddPortfolio'])->name('store.portfolio');
+
+// portfolio 
+Route::get('/portfolio',[HomeController::class,'portfolio'])->name('portfolio');
+
+// contact page 
+
+Route::get('/contact',[ContactController::class,'contactPage'])->name('contact');
+Route::get('/contact/all',[ContactController::class,'AllContact'])->name('all.contact');
+Route::get('/contact/allMessage',[ContactController::class,'allMessage'])->name('all.contactMessage');
+Route::get('/contact/add',[ContactController::class,'addContact'])->name('add.contact');
+Route::post('/contact/store',[ContactController::class,'storeContact'])->name('store.contact');
+Route::post('/contact/form/store',[ContactController::class,'storeContactForm'])->name('store.contactForm');
+
+//change password and user profile
+Route::get('/user/password',[ChangePass::class,'changePassword'])->name('change.password');
+Route::post('/user/updatePass',[ChangePass::class,'updatePass'])->name('update.password');
 
 
 

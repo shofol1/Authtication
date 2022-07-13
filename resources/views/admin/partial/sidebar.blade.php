@@ -48,6 +48,16 @@
                     <span class="nav-text">Home Brand</span>
                   </a>
                 </li>
+                <li class="active">
+                  <a class="sidenav-item-link" href={{ route('all.contact') }}>
+                    <span class="nav-text">Contact Info</span>
+                  </a>
+                </li>
+                <li class="active">
+                  <a class="sidenav-item-link" href={{ route('all.contactMessage') }}>
+                    <span class="nav-text">Contact Message</span>
+                  </a>
+                </li>
 
                 <li class="">
                   <a class="sidenav-item-link" href="analytics.html">

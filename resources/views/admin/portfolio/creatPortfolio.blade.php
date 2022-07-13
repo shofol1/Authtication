@@ -14,7 +14,7 @@
 					
 					<div class="form-group">
 						<label for="exampleFormControlFile1">Image</label>
-						<input type="file" class="form-control-file" name="image[]" multiple="">
+						<input type="file" class="form-control-file" name="images[]" multiple="">
 					</div>
                     @error('image')
                     <span class="text-danger my-3">{{ $message }}</span>

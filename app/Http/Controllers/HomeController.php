@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic as Image;
 class HomeController extends Controller
 {
+
     public function slider(){
         $sliders=DB::table('sliders')->get();
         return view('admin.home.index',compact('sliders'));
@@ -89,16 +90,22 @@ return Redirect()->route('home.slider')->with('success','Slider added successful
         return view('admin.portfolio.creatPortfolio');
     }
     public function AddPortfolio(Request $request){
-        $image=$request->image;
-    foreach($image as $multi_img){
+        $images=$request->file('images');
+    foreach($images as $multi_img){
     $name_gen=hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
-    Image::make($multi_img)->resize(60,36)->save('images/portfolio/'.$name_gen);
+    Image::make($multi_img)->resize(1920,1024)->save('images/portfolio/'.$name_gen);
     $last_image='images/portfolio/'.$name_gen;
     Portfolio::insert([
         'images'=>$last_image,
         'created_at'=>Carbon::now()
     ]);
-           return Redirect()->route('home.portfolio')->with('success','portfolio added successfully');
+          
         }
+        return Redirect()->route('home.portfolio')->with('success','portfolio added successfully');
+    }
+
+    public function portfolio(){
+        $images=Portfolio::all();
+        return view('Pages.portfolioPage',compact('images'));
     }
 }
